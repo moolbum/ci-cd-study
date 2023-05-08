@@ -1,9 +1,9 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: GitHub Actions Development Demo
+run-name: ${{ github.actor }} is develop 🚀
 on:
   push:
     branches:
-      - "main"
+      - "develop"
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
