@@ -40,7 +40,15 @@ jobs:
       - name: Create CodeDeploy deployment
         run: |
           aws deploy create-deployment \
-            --application-name develop-deploy \
-            --deployment-group-name dale-develop-deploy-group \
-            --s3-location bucket=slogup-dale-bucket,bundleType=zip,key=deployment-package.zip \
-            --deployment-config-name CodeDeployDefault.AllAtOnce
+          --application-name develop-deploy \
+          --deployment-group-name dale-develop-deploy-group \
+          --description "My GitHub deployment demo" \
+          --s3-location bucket=slogup-dale-bucket,bundleType=zip,key=deployment-package.zip \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
+
+        # run: |
+        #   aws deploy create-deployment \
+        #     --application-name develop-deploy \
+        #     --deployment-group-name dale-develop-deploy-group \
+        #     --s3-location bucket=slogup-dale-bucket,bundleType=zip,key=deployment-package.zip \
+        #     --deployment-config-name CodeDeployDefault.AllAtOnce
