@@ -38,7 +38,8 @@ jobs:
         run: aws s3 cp --region ap-northeast-2 ./deployment-package.zip s3://slogup-dale-bucket/deployment-package.zip
 
       - name: Create CodeDeploy deployment
-        run: aws deploy create-deployment
+        run: |
+          aws deploy create-deployment
           --application-name develop-deploy
           --deployment-group-name dale-develop-deploy-group
           --s3-location bucket=slogup-dale-bucket,bundleType=zip,key=deployment-package.zip
