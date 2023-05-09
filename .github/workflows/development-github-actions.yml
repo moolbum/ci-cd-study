@@ -21,9 +21,6 @@ jobs:
         run: yarn build:dev
         env:
           S3_BUCKET_NAME: slogup-dale-bucket
-          NEXT_PUBLIC_ENV_MODE: dev
-          CODE_DEPLOY_APPLICATION_NAME: develop-deploy
-          CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dale-develop-deploy-group
 
         # zip 파일을 만듭니다(파일명은 자유, 대신 아래 workflow에 적을 파일명과 동일하게 맞춰주세요)
       - name: zip create
@@ -47,6 +44,6 @@ jobs:
       - name: Deploy # Deploy to EC2
         run: aws deploy create-deployment
           --deployment-config-name CodeDeployDefault.AllAtOnce
-          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }}
-          --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }}
+          --application-name develop-deploy
+          --deployment-group-name dale-develop-deploy-group
           --s3-location bucket=slogup-dale-bucket,bundleType=zip,key=test.zip
