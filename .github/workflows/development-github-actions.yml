@@ -20,11 +20,11 @@ jobs:
       - name: Build # React Build
         run: yarn build
         env:
-          CI: ""
+          S3_BUCKET_NAME: slogup-dale-bucket
 
         # zip 파일을 만듭니다(파일명은 자유, 대신 아래 workflow에 적을 파일명과 동일하게 맞춰주세요).
       - name: zip create
-        run: zip -r ./dale-develop.zip
+        run: zip -r ./$GITHUB_SHA.zip .
         shell: bash
 
       - name: Configure AWS credentials
@@ -39,7 +39,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp --region ap-northeast-2 ./dale-develop.zip s3://slogup-dale-bucket/dale-develop.zip
+          aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://slogup-dale-bucket/$GITHUB_SHA.zip
 
       - name: Deploy # Deploy to EC2
         run: aws deploy create-deployment
