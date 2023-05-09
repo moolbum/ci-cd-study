@@ -32,7 +32,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Sync build folder to S3
-        run: aws s3 sync build/ s3://slogup-dale-dev-deployInfo --delete
+        run: aws s3 sync build/ s3://slogup-dale-dev-deploy --delete
 
       - name: Invalidate CloudFront cache
         run: aws cloudfront create-invalidation --distribution-id E2ZDWTYYFVXBLE --paths "/*"
