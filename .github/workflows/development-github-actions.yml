@@ -1,4 +1,5 @@
-name: Development Workflow
+name: Deploy to AWS S3 and CloudFront
+
 on:
   push:
     branches:
@@ -9,21 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Check Node.js version
-        run: node -v
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
       - name: Build
         run: yarn build:dev
-
-      - name: Create deployment package
-        run: zip -r ./deployment-package.zip .
-        shell: bash
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -32,13 +31,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Upload deployment package to S3
-        run: aws s3 cp --region ap-northeast-2 ./deployment-package.zip s3://slogup-dale-bucket/deployment-package.zip
+      - name: Sync build folder to S3
+        run: aws s3 sync build/ s3://slogup-dale-dev-deployInfo --delete
 
-      - name: Create CodeDeploy deployment
-        run: |
-          aws deploy create-deployment
-          --application-name develop-deploy
-          --deployment-group-name dale-develop-deploy-group
-          --s3-location bucket=slogup-dale-bucket,bundleType=zip,key=deployment-package.zip
-          --deployment-config-name CodeDeployDefault.AllAtOnce
+      - name: Invalidate CloudFront cache
+        run: aws cloudfront create-invalidation --distribution-id E2ZDWTYYFVXBLE --paths "/*"
