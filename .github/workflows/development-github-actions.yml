@@ -24,7 +24,7 @@ jobs:
 
         # zip 파일을 만듭니다(파일명은 자유, 대신 아래 workflow에 적을 파일명과 동일하게 맞춰주세요).
       - name: zip create
-        run: zip -r ./$GITHUB_SHA.zip .
+        run: zip -r ./test.zip .
         shell: bash
 
       - name: Configure AWS credentials
@@ -39,11 +39,11 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://slogup-dale-bucket/$GITHUB_SHA.zip
+          aws s3 cp --region ap-northeast-2 ./test.zip s3://slogup-dale-bucket/test.zip
 
       - name: Deploy # Deploy to EC2
         run: aws deploy create-deployment
           --deployment-config-name CodeDeployDefault.AllAtOnce
-          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }}
-          --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }}
+          --application-name develop-deploy
+          --deployment-group-name dale-develop-deploy-group
           --s3-location bucket=slogup-dale-bucket,key=dale-develop.zip,bundleType=zip
