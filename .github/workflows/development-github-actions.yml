@@ -22,7 +22,7 @@ jobs:
         env:
           S3_BUCKET_NAME: slogup-dale-bucket
 
-        # zip 파일을 만듭니다(파일명은 자유, 대신 아래 workflow에 적을 파일명과 동일하게 맞춰주세요).
+        # zip 파일을 만듭니다(파일명은 자유, 대신 아래 workflow에 적을 파일명과 동일하게 맞춰주세요)
       - name: zip create
         run: zip -r ./test.zip .
         shell: bash
@@ -46,4 +46,4 @@ jobs:
           --deployment-config-name CodeDeployDefault.AllAtOnce
           --application-name develop-deploy
           --deployment-group-name dale-develop-deploy-group
-          --s3-location bucket=slogup-dale-bucket,key=dale-develop.zip,bundleType=zip
+          --s3-location bucket=slogup-dale-bucket,key=test.zip,bundleType=zip
