@@ -46,4 +46,4 @@ jobs:
           --deployment-config-name CodeDeployDefault.AllAtOnce
           --application-name develop-deploy
           --deployment-group-name dale-develop-deploy-group
-          --s3-location bucket=slogup-dale-bucket,bundleType=zip,key=test.zip
+          --s3-location bucket=slogup-dale-bucket,bundleType=zip,key=./test.zip
