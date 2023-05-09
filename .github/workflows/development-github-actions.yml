@@ -5,7 +5,7 @@ on:
     branches:
       - "develop"
 jobs:
-  CI/CD:
+  Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code. # Repo checkout
