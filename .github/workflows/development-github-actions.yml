@@ -1,4 +1,4 @@
-name: Deploy to AWS S3 and CloudFront
+name: development-deploy
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install Dependencies
+      - name: Install Package
         run: yarn install --frozen-lockfile
 
       - name: Build
