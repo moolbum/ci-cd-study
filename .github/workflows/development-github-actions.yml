@@ -17,7 +17,7 @@ jobs:
       - name: Install Dependencies # 의존 파일 설치
         run: yarn install --frozen-lockfile
 
-      - name: Build # React Build .
+      - name: Build # React Build
         run: yarn build
         env:
           CI: ""
@@ -39,7 +39,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp --region ap-northeast-2 ./dale-develop.zip s3://dale-develop-build/dale-develop.zip
+          aws s3 cp --region ap-northeast-2 ./dale-develop.zip s3://slogup-dale-bucket/dale-develop.zip
 
       - name: Deploy # Deploy to EC2
         run: aws deploy create-deployment
