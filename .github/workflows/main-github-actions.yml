@@ -1,5 +1,5 @@
 name: GitHub Actions Main Demo
-run-name: ${{ github.actor }} is Main 🚀
+
 on:
   push:
     branches:
