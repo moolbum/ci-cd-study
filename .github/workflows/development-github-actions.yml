@@ -43,31 +43,28 @@ jobs:
         with:
           payload: |
             {
-              "text": "개발배포 완료 :rocket:",
+              "text": "개발 배포 완료 :rocket:",
               "blocks": [
                 {
-                  "type": "section",
+                  "type": "header",
                   "text": {
-                    "type": "mrkdwn",
-                    "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                    "type": "plain_text",
+                    "text": "개발배포 완료 :rocket:"
                   }
-                }
-              ]
-            }
-            {
-              "text": "Deployment started (In Progress)",
-              "attachments": [
+                },
                 {
-                  "pretext": "Deployment started",
-                  "color": "dbab09",
+                  "type": "section",
                   "fields": [
                     {
-                      "title": "Status",
-                      "short": true,
-                      "value": "In Progress"
+                      "type": "mrkdwn",
+                      "text": "*배포 진행자*\n${{ github.actor }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*배포 URL*\n <https://dds5jhvs09adv.cloudfront.net>"
                     }
                   ]
-                }
+                },
               ]
             }
         env:
