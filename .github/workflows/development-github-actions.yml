@@ -43,13 +43,13 @@ jobs:
         with:
           payload: |
             {
-              "text": "배포현황: ${{ job.status === 'success' ? '🟢' : '🔴' }}",
+              "text": "개발배포 완료 :rocket:",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "배포현황: ${{ job.status === 'success' ? '🟢' : '🔴' }}",
+                    "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
                   }
                 }
               ]
