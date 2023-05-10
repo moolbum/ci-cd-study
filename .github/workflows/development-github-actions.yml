@@ -19,7 +19,7 @@ jobs:
           node-version: 16
 
       - name: Install Package
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile123123123123
 
       - name: Build
         run: yarn build:dev
