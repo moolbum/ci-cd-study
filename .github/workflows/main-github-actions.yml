@@ -47,7 +47,7 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                # text:
+                text:
                 `
                 *운영 배포 완료* :rocket:
 
