@@ -47,8 +47,10 @@ jobs:
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
                 text: 
-                '개발배포 완료:'\n
-                '배포 상태:' '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning'
+                `
+                *개발배포 완료*
+                *배포 상태*: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning'
+                `
               }]
             }
         env:
