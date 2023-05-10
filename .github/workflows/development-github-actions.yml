@@ -47,7 +47,9 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `개발배포 완료 ${{ job.status }}`,
+                text: `**개발배포 완료** :rocket:
+                      **배포 진행자** : ${{github.actor}}
+                      `,
               }]
             }
         env:
