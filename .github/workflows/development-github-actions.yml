@@ -40,11 +40,11 @@ jobs:
       - name: action-slack
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ job.status }}
           text: |
-            개발배포 완료 :rocket:
+            배포 완료 :rocket:
+            배포 진행자 : ${{github.actor_id}}
 
-            Link : <https://dds5jhvs09adv.cloudfront.net>
+            URL : <https://dds5jhvs09adv.cloudfront.net>
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
