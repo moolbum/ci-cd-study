@@ -42,6 +42,7 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: custom
+
           custom_payload: |
             {
               attachments: [{
@@ -50,7 +51,7 @@ jobs:
                 `
                 *개발배포 완료 :gear:*
 
-                *배포 상태* : ${{job.status === 'success'}}
+                *배포 상태* : ${{job.status}}
                 *배포 진행자* : ${{github.triggering_actor}}
                 *URL* : https://dds5jhvs09adv.cloudfront.net/
                 `

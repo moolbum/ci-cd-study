@@ -36,3 +36,27 @@ jobs:
 
       - name: Invalidate CloudFront cache
         run: aws cloudfront create-invalidation --distribution-id E121MH32UPE3LP --paths "/*"
+
+      - name: Slack Message
+        id: slack
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+
+          custom_payload: |
+            {
+              attachments: [{
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                # text:
+                `
+                *운영 배포 완료 :rocket:*
+
+                *배포 상태* : ${{job.status}}
+                *배포 진행자* : ${{github.triggering_actor}}
+                *URL* : https://dzqdaqwjjk4n9.cloudfront.net/
+                `
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
