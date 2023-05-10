@@ -43,13 +43,13 @@ jobs:
         with:
           payload: |
             {
-              "text": "배포현황: ${{ job.status === 'success' ? 🟢 : 🔴 }}",
+              "text": "배포현황: ${{ job.status === 'success' ? '🟢' : '🔴' }}",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "배포현황: ${{ job.status === 'success' ? 🟢 : 🔴 }}",
+                    "text": "배포현황: ${{ job.status === 'success' ? '🟢' : '🔴' }}",
                   }
                 }
               ]
