@@ -39,34 +39,19 @@ jobs:
 
       - name: action-slack
         id: slack
-        uses: slackapi/slack-github-action@v1.23.0
+        uses: actions/checkout@v2
         with:
-        payload: |
-          {
-            "text": "개발 배포 완료 :rocket:",
-            "blocks": [
-              {
-                "type": "header",
-                "text": {
-                  "type": "plain_text",
-                  "text": "개발배포 완료 :rocket:"
-                }
-              },
-              {
-                "type": "section",
-                "fields": [
-                  {
-                    "type": "mrkdwn",
-                    "text": "*배포 진행자*\n${{ github.actor }}"
-                  },
-                  {
-                    "type": "mrkdwn",
-                    "text": "*배포 URL*\n <https://dds5jhvs09adv.cloudfront.net>"
-                  }
-                ]
-              },
-            ]
-          }
+          status: ${{ job.status }}
+          text: |
+            배포 URL
+            <https://dds5jhvs09adv.cloudfront.net>
+
+            *배포 진행자*
+            ${{github.actor}}
+
+          color: "#36a64f"
+          username: Custom Username
+          icon_emoji: ":rocket:"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
