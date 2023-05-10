@@ -49,7 +49,7 @@ jobs:
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
                 # text:
                 `
-                *운영 배포 완료 :rocket:*
+                *운영 배포 완료* :rocket:
 
                 *배포 상태* : ${{job.status}}
                 *배포 진행자* : ${{github.triggering_actor}}
