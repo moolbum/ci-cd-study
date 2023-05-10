@@ -32,7 +32,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Sync build folder to S3
-        run: aws s3 sync build/ s3://slogup-dale-dev-deploy --delete
+        run: aws s3 sync build/ s3://slogup-dale-dev-deploy12312321312 --delete
 
       - name: Invalidate CloudFront cache
         run: aws cloudfront create-invalidation --distribution-id E2ZDWTYYFVXBLE --paths "/*"
@@ -48,7 +48,7 @@ jobs:
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
                 text:
                 `
-                *개발배포 완료 :gear:*
+                *개발 배포 완료 :gear:*
 
                 *배포 상태* : ${{job.status}}
                 *배포 진행자* : ${{github.triggering_actor}}
