@@ -19,7 +19,7 @@ jobs:
           node-version: 16
 
       - name: Install Package
-        run: yarn install --frozen-lockfile123123123123
+        run: yarn install --frozen-lockfile
 
       - name: Build
         run: yarn build:dev
@@ -32,7 +32,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Sync build folder to S3
-        run: aws s3 sync build/ s3://slogup-dale-dev-deploy --delete
+        run: aws s3 sync build/ s3://slogup-dale-dev-deploy123123123123123123 --delete
 
       - name: Invalidate CloudFront cache
         run: aws cloudfront create-invalidation --distribution-id E2ZDWTYYFVXBLE --paths "/*"
