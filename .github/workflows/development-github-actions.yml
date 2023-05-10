@@ -49,8 +49,8 @@ jobs:
                 text: 
                 `
                 *개발배포 완료*
-                *배포 진행자* : ${{process.env.AS_AUTHOR}}
-                *배포 JOB* : ${{process.env.AS_JOB}}
+                *배포 진행자* : ${process.env.AS_AUTHOR}
+                *배포 JOB* : ${process.env.AS_COMMIT}
                 *URL* : https://dds5jhvs09adv.cloudfront.net/
                 `
               }]
