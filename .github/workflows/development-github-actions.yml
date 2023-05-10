@@ -49,10 +49,10 @@ jobs:
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
                 text: 
                 `
-                <b>배포 완료</b>
-                <b>배포 상태</b> : ${{ job.status }} === 'success' ? ":white_check_mark:" : ${{ job.status }} === 'failure' ? ':no_entry:' : ':warning:'
-                <b>배포 진행자</b> : ${{github.actor}}
-                <b>배포 URL</b> : <https://dds5jhvs09adv.cloudfront.net>
+                배포 완료
+                배포 상태 : ${job.status} === 'success' ? ":white_check_mark:" : ${job.status} === 'failure' ? ':no_entry:' : ':warning:'
+                배포 진행자 : ${process.env.AS_AUTHOR}
+                배포 URL : <https://dds5jhvs09adv.cloudfront.net>
                 `,
               }]
             }
