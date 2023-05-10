@@ -38,13 +38,13 @@ jobs:
         run: aws cloudfront create-invalidation --distribution-id E2ZDWTYYFVXBLE --paths "/*"
 
       - name: action-slack
-            uses: 8398a7/action-slack@v3
-            with:
-              status: ${{ job.status }}
-              author_name: ${{github.actor}}
-              fields: repo,commit,message,author # action,eventName,ref,workflow,job,took 추가할 수 있음
-              mention: here
-              if_mention: failure,cancelled
-            env:
-              SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-            if: always() # Pick up events even if the job fails or is canceled.
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          author_name: ${{github.actor}}
+          fields: repo,commit,message,author
+          mention: here
+          if_mention: failure,cancelled
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
