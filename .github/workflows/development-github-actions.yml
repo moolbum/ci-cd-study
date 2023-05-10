@@ -32,7 +32,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Sync build folder to S3
-        run: aws s3 sync build/ s3://slogup-dale-dev-deploy123123123123123123 --delete
+        run: aws s3 sync build/ s3://slogup-dale-dev-deploy --delete
 
       - name: Invalidate CloudFront cache
         run: aws cloudfront create-invalidation --distribution-id E2ZDWTYYFVXBLE --paths "/*"
@@ -41,10 +41,12 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          author_name: ${{github.actor}}
-          fields: repo,commit,message,author
-          mention: here
-          if_mention: failure,cancelled
+          text: |
+            Your custom message goes here.
+            test
+            You can include multiple lines.
+            test
+          icon_emoji: ":rocket:"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
