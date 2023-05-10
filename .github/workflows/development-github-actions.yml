@@ -42,11 +42,9 @@ jobs:
         with:
           status: ${{ job.status }}
           text: |
-            Your custom message goes here.
-            test
-            You can include multiple lines.
-            test
-          icon_emoji: ":rocket:"
+            개발배포 완료 :rocket:
+
+            Link : <https://dds5jhvs09adv.cloudfront.net>
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
